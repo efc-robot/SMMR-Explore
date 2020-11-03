@@ -1,0 +1,32 @@
+<launch>
+  <arg name="eta" value="1.0"/>
+  <arg name="Geta" value="1.0"/>
+  <arg name="namespace1" value="robot1"/>
+  <param name="namespace_init_count" value="1"/>
+
+  <node pkg="rrt" type="rrt_node" name="robot1_rrt" output="screen">
+    <param name="eta" value="$(arg eta)"/>
+    <param name="map_topic" value="$(arg namespace1)/map"/>
+    <param name="costmap_topic" value="$(arg namespace1)/move_base/global_costmap/costmap"/>
+    <param name="frontier_topic" value="$(arg namespace1)/frontiers"/>
+    <param name="robot_frame" value="$(arg namespace1)/map"/>
+    <param name="robot_base_frame" value="$(arg namespace1)/base_footprint"/>
+    <param name="info_radius" value="1"/> 
+    <param name="costmap_pixel_threshold" value="0"/> 
+    <param name="namespace" value="$(arg namespace1)"/> 
+    <param name="rate" value="100"/>
+
+    <param name="n_robot" value="1"/>
+    <param name="this_robot_idx" value="1"/>
+    <param name="robot_ano_frame_preffix" value="robot"/>
+    <param name="robot_ano_frame_suffix" value="/map"/>
+    
+    <param name="trajectory_query_name" value="$(arg namespace1)/trajectory_query"/>
+    <param name="output_file" value="$(find rrt)/data/$(arg namespace1)_trajectory.txt"/>
+    <param name="output_map_file" value="$(find rrt)/data/$(arg namespace1)_rrt_explored_map.txt"/>
+  </node>
+  <node pkg="rviz" type="rviz" name="rviz_robot1" args="-d $(find rrt)/rviz/robot1_rrt_node.rviz"/>
+</launch>
+
+
+

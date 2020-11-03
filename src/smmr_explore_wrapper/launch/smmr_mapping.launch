@@ -1,0 +1,36 @@
+<launch>
+  <arg name="robotname"   default="robot2"/>
+  <arg name="weightspath" default="$(find multirobot_map_merge)/include/weights/gem.pth" />
+  <arg name="registration_method" default="submap_img"/>
+  <!-- <arg name="registration_method" default="submap_pcl"/> -->
+  <!-- <arg name="registration_method" default="laser_scan"/> -->
+  
+  <node name="submap_msg_remap" pkg="smmr_explore_wrapper" required="true" type="msg_remap.py" output="log">
+    <remap from="msg_in"  to="submap_list" />
+    <remap from="msg_out" to="/submap_list" />
+  </node>
+
+  <node name="gen_occupancy_grid" pkg="smmr_explore_wrapper" required="true" type="matchStamps2tf_pointnet_map_tf.py" args="-m $(arg registration_method) -w $(arg weightspath) -i $(arg robotname)" output="log">
+    <remap from="match_pair"  to="loopstamps" />
+    <remap from="submap_list" to="/submap_list" />
+  </node>
+
+  <node name="map_register" pkg="multirobot_map_merge" required="true" type="map_register" output="log">
+    <param name="estimation_confidence" value="0.0"/>
+    <remap from="GetMapTransform" to="GetMapTransform_submap_img" />
+  </node>
+
+  <node name="icp_register" pkg="icp_registration" required="true" type="icp_node" output="log">
+    <remap from="doing_icp" to="GetMapTransform_submap_pcl" />
+    <remap from="laser_icp" to="GetMapTransform_laser_scan" />
+  </node>
+
+  <node name="map_merge" pkg="multirobot_map_merge" required="true" type="map_merge" output="log">
+    <param name="known_init_poses" value="true"/>
+    <param name="robot_map_topic"  value="cartographer_discrete_map"/>
+    <param name="merged_map_topic" value="cartographerMap"/>
+    <param name="robot_namespace"  value=""/>
+    <param name="world_frame"      value="/$(arg robotname)/map"/>
+    <param name="robot_map_frame"  value="map"/>
+  </node>
+</launch>

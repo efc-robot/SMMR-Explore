@@ -1,0 +1,5 @@
+sensor_msgs/PointCloud2 mapdata
+sensor_msgs/PointCloud2 mapdata2
+geometry_msgs/Transform guess
+---
+geometry_msgs/Transform transformation

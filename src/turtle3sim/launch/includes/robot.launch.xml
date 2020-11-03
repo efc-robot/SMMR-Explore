@@ -1,0 +1,15 @@
+<launch>
+  <arg name="robot_name"/>
+  <arg name="model" default="burger"/>
+  <arg name="init_pose" default="-x 1.0 -y 1.0 -z 0.0"/>
+  
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3sim)/urdf/turtlebot3_$(arg model).urdf.xacro" />
+
+  <node name="spawn_urdf$(arg robot_name)" pkg="gazebo_ros" type="spawn_model" args="-urdf -model turtlebot3$(arg robot_name) $(arg init_pose) -param robot_description" />
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="publish_frequency" type="double" value="50.0" />
+    <param name="tf_prefix" value="$(arg robot_name)"/>
+  </node>
+
+ </launch> 

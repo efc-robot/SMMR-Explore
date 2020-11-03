@@ -1,0 +1,33 @@
+<launch>
+  <!-- Arguments -->
+  <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+  <arg name="cmd_vel_topic" default="cmd_vel" />
+  <arg name="odom_topic" default="odom" />
+  <arg name="move_forward_only" default="false"/>
+  <arg name="robot_name"/>
+
+  <!-- move_base -->
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS" />
+    <rosparam file="$(find turtlebot3sim)/param_teb/costmap_common_params_$(arg model).yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find turtlebot3sim)/param_teb/costmap_common_params_$(arg model).yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find turtlebot3sim)/param_teb/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find turtlebot3sim)/param_teb/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find turtlebot3sim)/param_teb/move_base_params.yaml" command="load" />
+    <rosparam file="$(find turtlebot3sim)/param_teb/teb_local_planner_params_$(arg model).yaml" command="load" />
+    <remap from="cmd_vel" to="$(arg cmd_vel_topic)"/>
+    <remap from="odom" to="$(arg odom_topic)"/>
+
+    <param name="global_costmap/global_frame" value="$(arg robot_name)/map"/>
+    <param name="global_costmap/robot_base_frame" value="$(arg robot_name)/base_footprint"/>
+    <param name="global_costmap/laser_scan_sensor/sensor_frame" value="$(arg robot_name)/base_scan"/>
+    <param name="global_costmap/laser_scan_sensor/topic" value="/$(arg robot_name)/scan"/>    
+    <param name="local_costmap/global_frame" value="$(arg robot_name)/odom"/>
+    <param name="local_costmap/robot_base_frame" value="$(arg robot_name)/base_footprint"/>
+    <param name="local_costmap/laser_scan_sensor/sensor_frame" value="$(arg robot_name)/base_scan"/>
+    <param name="local_costmap/laser_scan_sensor/topic" value="/$(arg robot_name)/scan"/>
+    <param name="local_costmap/obstacle_layer/laser_scan_sensor/topic" value="/$(arg robot_name)/scan"/>
+    <param name="TebLocalPlannerROS/map_frame" value="$(arg robot_name)/odom"/>
+
+  </node>
+</launch>

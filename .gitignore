@@ -1,0 +1,7 @@
+*.pth
+*.ckpt
+.vscode
+*.vscode
+.catkin*
+devel/
+build/

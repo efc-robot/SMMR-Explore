@@ -1,0 +1,51 @@
+<!-- Launch file for the rrt-detector and the assigner -->
+
+
+<launch>
+  <arg name="namespace1" value="robot1"/>
+  <arg name="namespace2" value="robot2"/>
+  <param name="namespace_init_count" value="1"/>
+
+  <node pkg="mmpf" type="mmpf_node" name="$(arg namespace1)_mmpf" output="screen">
+    <param name="map_topic" value="$(arg namespace1)/map"/>
+    <param name="costmap_topic" value="$(arg namespace1)/move_base/global_costmap/costmap"/>
+    <param name="robot_base_frame" value="$(arg namespace1)/base_footprint"/>
+    <param name="rate" value="1"/>
+    <param name="robot_frame" value="$(arg namespace1)/map"/>
+    <param name="namespace" value="$(arg namespace1)"/>
+
+    <param name="n_robot" value="2"/>
+    <param name="this_robot_idx" value="1"/>
+    <param name="robot_ano_frame_preffix" value="robot"/>
+    <param name="robot_ano_frame_suffix" value="/base_footprint"/>
+    
+    <param name="trajectory_query_name" value="$(arg namespace1)/trajectory_query"/>
+    <param name="output_file" value="$(find mmpf)/data/robot1_mmpf_trajectory.txt"/>
+    <param name="output_map_file" value="$(find mmpf)/data/robot1_mmpf_explored_map.txt"/>
+  </node>
+
+  <node pkg="mmpf" type="mmpf_node" name="$(arg namespace2)_mmpf" output="screen">
+    <param name="map_topic" value="$(arg namespace2)/map"/>
+    <param name="costmap_topic" value="$(arg namespace2)/move_base/global_costmap/costmap"/>
+    <param name="robot_base_frame" value="$(arg namespace2)/base_footprint"/>
+    <param name="rate" value="1"/>
+    <param name="robot_frame" value="$(arg namespace2)/map"/>
+    <param name="namespace" value="$(arg namespace2)"/>
+
+    <param name="n_robot" value="2"/>
+    <param name="this_robot_idx" value="2"/>
+    <param name="robot_ano_frame_preffix" value="robot"/>
+    <param name="robot_ano_frame_suffix" value="/base_footprint"/>
+
+    <param name="trajectory_query_name" value="$(arg namespace2)/trajectory_query"/>
+    <param name="output_file" value="$(find mmpf)/data/robot2_mmpf_trajectory.txt"/>
+    <param name="output_map_file" value="$(find mmpf)/data/robot2_mmpf_explored_map.txt"/>
+  </node>
+
+  <node pkg="rviz" type="rviz" name="$(arg namespace1)_rviz" args="-d $(find mmpf)/rviz/single_sim_mmpf_node.rviz" />
+  <node pkg="rviz" type="rviz" name="$(arg namespace2)_rviz" args="-d $(find mmpf)/rviz/single_sim_mmpf_node_robot2.rviz" />
+
+</launch>
+
+
+

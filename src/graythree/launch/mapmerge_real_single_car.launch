@@ -1,0 +1,10 @@
+<launch>
+
+
+<node pkg="mapmerge" type="mapmerge_node" name="map_merge" output="screen" >
+	<param name="robot1_x" value="0.0" />
+	<param name="robot1_y" value="0.0" /
+</node>
+
+
+</launch>

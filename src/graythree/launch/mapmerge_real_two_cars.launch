@@ -1,0 +1,17 @@
+<launch>
+
+
+<!-- transformation between robots 
+<node pkg="tf" type="static_transform_publisher" name="robot2_to_robot1" args="-0.8 0 0 0 0 0 robot1/map robot2/map 20" /> -->
+
+<node pkg="mapmerge" type="mapmerge_node" name="map_merge" output="screen" >
+	<param name="robot1_x" value="0.0" />
+	<param name="robot2_x" value="-0.8" />
+	<!-- <param name="robot3_x" value="0.0" /> -->
+	<param name="robot1_y" value="0.0" />
+	<param name="robot2_y" value="0.0" />
+	<!-- <param name="robot3_y" value="0.8" /> -->
+</node>
+
+
+</launch>

@@ -1,0 +1,64 @@
+<launch>
+    <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+    <arg name="x_pos" default="-3.0"/>
+    <arg name="y_pos" default="1.0"/>
+    <arg name="z_pos" default="0.0"/>
+
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find turtlebot3sim)/worlds/large.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+    </include>
+
+    <group ns="robot1">
+        <include file="$(find turtlebot3sim)/launch/includes/robot.launch.xml">
+            <arg name="robot_name" value="robot1"/>
+            <arg name="model" value="$(arg model)"/>
+            <arg name="init_pose" value="-x 7.0 -y 5.0 -z 0.0 -Y 1.57"/> 
+        </include>
+    </group>
+
+    <group ns="robot2">
+        <include file="$(find turtlebot3sim)/launch/includes/robot.launch.xml">
+            <arg name="robot_name" value="robot2"/>
+            <arg name="model" value="$(arg model)"/>
+            <arg name="init_pose" value="-x -7 -y 9.0 -z 0.0 -Y 1.57"/>
+        </include>
+    </group>
+
+    <group ns="robot3">
+        <include file="$(find turtlebot3sim)/launch/includes/robot.launch.xml">
+            <arg name="robot_name" value="robot3"/>
+            <arg name="model" value="$(arg model)"/>
+            <arg name="init_pose" value="-x -7.0 -y -5.0 -z 0.0 -Y 1.57"/>
+        </include>
+    </group>
+
+    <group ns="robot4">
+        <include file="$(find turtlebot3sim)/launch/includes/robot.launch.xml">
+            <arg name="robot_name" value="robot4"/>
+            <arg name="model" value="$(arg model)"/>
+            <arg name="init_pose" value="-x -7.0 -y 5.0 -z 0.0 -Y 1.57"/> 
+        </include>
+    </group>
+
+    <group ns="robot5">
+        <include file="$(find turtlebot3sim)/launch/includes/robot.launch.xml">
+            <arg name="robot_name" value="robot5"/>
+            <arg name="model" value="$(arg model)"/>
+            <arg name="init_pose" value="-x -8.0 -y 0.0 -z 0.0 -Y 1.57"/>
+        </include>
+    </group>
+
+    <group ns="robot6">
+        <include file="$(find turtlebot3sim)/launch/includes/robot.launch.xml">
+            <arg name="robot_name" value="robot6"/>
+            <arg name="model" value="$(arg model)"/>
+            <arg name="init_pose" value="-x 0.0 -y -3.0 -z 0.0 -Y 1.57"/>
+        </include>
+    </group>
+
+</launch>
