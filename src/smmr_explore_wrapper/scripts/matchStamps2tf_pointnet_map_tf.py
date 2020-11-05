@@ -5,6 +5,7 @@ import threading
 import numpy as np
 import struct
 #导入自定义的数据类型
+#import data structures
 # from dslam_sp.msg import MatchStamp
 from cartographer_ros_msgs.msg import SubmapList, SubmapEntry
 from cartographer_ros_msgs.srv import OccupancyGridQuery
