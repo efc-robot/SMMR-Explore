@@ -90,10 +90,50 @@ class MultiRobotTF_Publisher:
         print("__del__")
         
     def TFThread(self):
-        for tf_frame,tf in self.tf_between_robots_dict.items():
-            print("publish tf: " + str(tf_frame))
-            self.br.sendTransformMessage(tf)
-        time.sleep(2)
+        while not rospy.is_shutdown():
+            small_frame_list=[]
+            big_frame_list=[]
+            self_frame = self.robot_id + "/map"
+            for tf_frame,tf in self.tf_between_robots_dict.items():
+                if tf_frame[:len(self_frame)] == self_frame :
+                    big_frame_list.append(tf.child_frame_id)
+                elif tf_frame[-len(self_frame):] == self_frame :
+                    small_frame_list.append(tf.header.frame_id)
+            
+            small_frame_list.sort()
+            for i in range(1,len(small_frame_list)):
+                tf1 = self.tf_between_robots_dict[small_frame_list[i-1] + ' to ' + self_frame]
+                tf2 = self.tf_between_robots_dict[small_frame_list[i] + ' to ' + self_frame]
+                pose1 = posemath.fromMsg(trans2pose(tf1))
+                pose2 = posemath.fromMsg(trans2pose(tf2))
+                tf = TransformStamped()
+                tf.header.stamp = rospy.Time.now()
+                tf.header.frame_id = tf1.header.frame_id
+                tf.child_frame_id = tf2.header.frame_id
+                tf.transform = pose2trans(posemath.toMsg(pose1*pose2.Inverse()))
+                print("publish tf: " + tf.header.frame_id + " to " + tf.child_frame_id)
+                self.br.sendTransformMessage(tf)
+            if len(small_frame_list)>0 :
+                print("publish tf: " + small_frame_list[-1] + ' to ' + self_frame)
+                self.br.sendTransformMessage(self.tf_between_robots_dict[small_frame_list[-1] + ' to ' + self_frame])
+            
+            big_frame_list.sort()
+            if len(big_frame_list)>0 :
+                print("publish tf: " + self_frame + ' to ' + big_frame_list[0])
+                self.br.sendTransformMessage(self.tf_between_robots_dict[self_frame + ' to ' + big_frame_list[0]])
+            for i in range(1,len(big_frame_list)):
+                tf1 = self.tf_between_robots_dict[self_frame + ' to ' + big_frame_list[i-1]]
+                tf2 = self.tf_between_robots_dict[self_frame + ' to ' + big_frame_list[i]]
+                pose1 = posemath.fromMsg(trans2pose(tf1))
+                pose2 = posemath.fromMsg(trans2pose(tf2))
+                tf = TransformStamped()
+                tf.header.stamp = rospy.Time.now()
+                tf.header.frame_id = tf1.child_frame_id
+                tf.child_frame_id = tf2.child_frame_id
+                tf.transform = pose2trans(posemath.toMsg(pose1.Inverse()*pose2))
+                print("publish tf: " + tf.header.frame_id + " to " + tf.child_frame_id)
+                self.br.sendTransformMessage(tf)
+            time.sleep(1)
         
 
     #回调函数输入的应该是msg

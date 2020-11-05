@@ -5,3 +5,4 @@
 .catkin*
 devel/
 build/
+*.pyc
