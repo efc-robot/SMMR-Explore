@@ -1,6 +1,8 @@
 # SMMR-Explore
 The released 1.0 Version of SMMR-Explore, the supporting open-sourced software package of the paper "SMMR-Explore: SubMap-based Multi-Robot Exploration System with Multi-robot and Multi-target Potential Field Explorer" submitted to ICRA 2021.
 
+Our video is released at [Youtube(english version)](https://www.youtube.com/watch?v=H1zwRIz8OYs&list=PLBKYimzl6wexgpQCXKijgDOflcCny6dBf&index=1) and [Bilibili(Chinese Version)](https://www.bilibili.com/video/BV1QT4y1F71u). Note that videos of all experiments also get released on Youtube Channel. 
+
 Features:
 - Only submaps get shared among robots, reducing the communication overhead.
 - place Recognition (PR), Relative pose estimation (RelPose) and map merge methods only based on submaps. 
@@ -42,7 +44,7 @@ pip install torch torchvision
 - model_test.ckpt NN model of 2D PointNetVLAD, should be placed in "src/smmr_explore_wrapper/scripts/"
 - (for simulation) gazebo, especially gazebo-ros
 
-Note: please contact author to get model files.
+Note: please contact author to get model files or download model at [download link](https://pan.baidu.com/s/1NBCEYombBhIqCbfqsiV12w) with password as 058o.
 
 ## Turtlebot3 Description and Simulation
 (robot model for simulation)
