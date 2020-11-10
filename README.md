@@ -50,8 +50,10 @@ Note: please contact author to get model files or download model at [download li
 (robot model for simulation)
 
 ```
-sudo apt get install ros-melodic-turtlebot3*
+sudo apt install ros-melodic-turtlebot3*
 sudo apt install ros-melodic-bfl
+pip install future
+sudo apt install ros-melodic-teb-local-planner
 ```
 
 
@@ -161,6 +163,9 @@ roslaunch turtlebot3sim Large_env_three_robots.launch
 roslaunch turtlebot3sim three_robots.launch
 roslaunch mmpf three_mmpf_node.launch 
 ```
+### Start Exploration
+
+For all the cases, choose "Publish Point" button in the rviz and then click anywhere in the map to start the exploration.
 
 # Acknowledge
 Greatly thanks to endeavor of all members for the whole SMMR system, Every part is INDISPENSABLE.
@@ -170,4 +175,4 @@ Greatly thanks to endeavor of all members for the whole SMMR system, Every part 
 - Yuanfan Xu:     Propose 2D PointNetVLAD for filter wrong submaps to reduce computation overhead of Place Recognition (PR).  (xuyf20@mails.tsinghua.edu.cn)
 - Haolin Dong:    Propose Iterative Close Points (ICP) registration methods. (donghl17@mails.tsinghua.edu.cn)
 - Tianxiang Yang: Implement elementary navigation of the real car using move_base package. (394644551@qq.com)
-- Yu Wang:        Project's Advisor && Lad Leader.  (yu-wang@tsinghua.edu.cn)
+- Yu Wang:        Project's Advisor && Lab Leader.  (yu-wang@tsinghua.edu.cn)
