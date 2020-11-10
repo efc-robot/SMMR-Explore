@@ -51,6 +51,7 @@ Note: please contact author to get model files or download model at [download li
 
 ```
 sudo apt get install ros-melodic-turtlebot3*
+sudo apt install ros-melodic-bfl
 ```
 
 
