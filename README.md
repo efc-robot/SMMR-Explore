@@ -44,7 +44,7 @@ pip install torch torchvision
 - model_test.ckpt NN model of 2D PointNetVLAD, should be placed in "src/smmr_explore_wrapper/scripts/"
 - (for simulation) gazebo, especially gazebo-ros
 
-Note: please contact author to get model files or download model at [download link](https://pan.baidu.com/s/1NBCEYombBhIqCbfqsiV12w) with password as 058o. The model files also available at [TsinghuaCloud](https://cloud.tsinghua.edu.cn/d/5a224e00d9354ca5aae5/).
+Note: please contact author to get model files or download model at [download link](https://pan.baidu.com/s/1NBCEYombBhIqCbfqsiV12w) with password as 058o. The model files are also available at [TsinghuaCloud](https://cloud.tsinghua.edu.cn/d/5a224e00d9354ca5aae5/).
 
 ## Turtlebot3 Description and Simulation
 (robot model for simulation)
