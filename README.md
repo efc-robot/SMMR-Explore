@@ -166,13 +166,3 @@ roslaunch mmpf three_mmpf_node.launch
 ### Start Exploration
 
 For all the cases, choose "Publish Point" button in the rviz and then click anywhere in the map to start the exploration.
-
-# Acknowledge
-Greatly thanks to endeavor of all members for the whole SMMR system, Every part is INDISPENSABLE.
-- Jincheng Yu:    Propose SubMap-based Multi-Robot (SMMR) Exploration System Idea & hard problems killer & project leader. (yjc16@tsinghua.edu.cn)
-- Jianming Tong:  propose decision methods: Multi-robot Multi-target Potential Field (MMPF) && improved RRT as baseline. (jtong45@gatech.edu)
-- Zhilin Xu:      Propose submap-based relative pose estimation and map merge algorithm, contribute multi-robot potential field for MMPF. (xuzhl18@mails.tsinghua.edu.cn)
-- Yuanfan Xu:     Propose 2D PointNetVLAD for filter wrong submaps to reduce computation overhead of Place Recognition (PR).  (xuyf20@mails.tsinghua.edu.cn)
-- Haolin Dong:    Propose Iterative Close Points (ICP) registration methods. (donghl17@mails.tsinghua.edu.cn)
-- Tianxiang Yang: Implement elementary navigation of the real car using move_base package. (394644551@qq.com)
-- Yu Wang:        Project's Advisor && Lab Leader.  (yu-wang@tsinghua.edu.cn)
