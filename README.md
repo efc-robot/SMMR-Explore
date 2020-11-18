@@ -17,9 +17,9 @@ Features:
 
 ## Cartographer
 Cartographer is a 2D/3D map-building method.
-It provides the submaps' and the tranjectories' information when building the map. 
+It provides the submaps' and the trajectories' information when building the map. 
 
-We slightly modifiyed the original Cartographer to make it applicable to multi-robot SLAM and exploration.
+We slightly modified the original Cartographer to make it applicable to multi-robot SLAM and exploration.
 
 Please refer to [Cartographer-for-SMMR](https://github.com/efc-robot/Cartographer-for-SMMR) to install the modified Cartographer to ```carto_catkin_ws```
 
@@ -44,7 +44,7 @@ pip install torch torchvision
 - model_test.ckpt NN model of 2D PointNetVLAD, should be placed in "src/smmr_explore_wrapper/scripts/"
 - (for simulation) gazebo, especially gazebo-ros
 
-Note: please contact author to get model files or download model at [download link](https://pan.baidu.com/s/1NBCEYombBhIqCbfqsiV12w) with password as 058o.
+Note: please contact author to get model files or download model at [download link](https://pan.baidu.com/s/1NBCEYombBhIqCbfqsiV12w) with password as 058o. The model files also available at [TsinghuaCloud](https://cloud.tsinghua.edu.cn/d/5a224e00d9354ca5aae5/).
 
 ## Turtlebot3 Description and Simulation
 (robot model for simulation)
