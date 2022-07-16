@@ -1,3 +1,0 @@
-[submodule "TopoExplore"]
-	path = src/TopoExplore
-	url = git@github.com:efc-robot/TopoExplore.git
