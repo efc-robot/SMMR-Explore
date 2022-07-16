@@ -56,6 +56,10 @@
     <param name="output_map_file" value="$(find rrt)/data/$(arg namespace2)_rrt_explored_map.txt"/>
  </node>
 
+ <node name="experiment" pkg="ros_topoexplore" type="experiment.py" output="screen">
+    <param name="robot_num" value="2"/>
+  </node>
+
 
   <!-- run RViz node (visualization) -->
   <node pkg="rviz" type="rviz" name="rviz_robot1" args="-d $(find rrt)/rviz/robot1_rrt_node.rviz"/>

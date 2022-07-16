@@ -19,7 +19,7 @@ TebLocalPlannerROS:
  max_vel_x: 0.5
  max_vel_y: 0    #差速导航注释掉此行
  max_vel_x_backwards: 0.35
- max_vel_theta: 0.4
+ max_vel_theta: 0.2
  acc_lim_x: 0.3
  acc_lim_y: 0   #差速导航注释掉此行
  acc_lim_theta: 0.50

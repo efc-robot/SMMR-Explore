@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python3.8
 
 import rospy
 from robot_pose_ekf.srv import GetStatus, GetStatusRequest

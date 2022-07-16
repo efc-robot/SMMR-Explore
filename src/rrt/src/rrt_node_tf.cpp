@@ -37,6 +37,7 @@ Author: Jianming TONG (jtong45@gatech.edu)
 #include "nav_msgs/MapMetaData.h"
 #include "geometry_msgs/Point.h"
 #include "visualization_msgs/Marker.h"
+#include "std_msgs/String.h"
 #include <tf/transform_listener.h>
 
 #include <actionlib/client/simple_action_client.h>
@@ -453,8 +454,17 @@ int main(int argc, char **argv)
     int iteration_counts= 0;
 #endif
     int number_iteration = 0;
-	while (ros::ok()){
 
+    // -------------------------------------activate experiment record node
+    ros::Publisher start_pub = nh.advertise<std_msgs::String>("/start_exp", 1);
+    std_msgs::String start_msg;
+    std::stringstream ss;
+    ss << "Start!";
+    start_msg.data = ss.str();
+    std::cout<<"Start"<<std::endl;
+
+	while (ros::ok()){
+        start_pub.publish(start_msg);
 
         // ------------------------------- detect the end of exploration.
 #ifdef IF_DETECT_END

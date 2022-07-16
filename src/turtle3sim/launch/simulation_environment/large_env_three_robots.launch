@@ -17,7 +17,7 @@
         <include file="$(find turtlebot3sim)/launch/includes/robot.launch.xml">
             <arg name="robot_name" value="robot1"/>
             <arg name="model" value="$(arg model)"/>
-            <arg name="init_pose" value="-x 7 -y 5.0 -z 0.0 -Y 1.57"/> 
+            <arg name="init_pose" value="-x 4 -y 1 -z 0.0 -Y 1.57"/> 
         </include>
     </group>
 
@@ -25,7 +25,7 @@
         <include file="$(find turtlebot3sim)/launch/includes/robot.launch.xml">
             <arg name="robot_name" value="robot2"/>
             <arg name="model" value="$(arg model)"/>
-            <arg name="init_pose" value="-x -7 -y 9.0 -z 0.0 -Y 1.57"/>
+            <arg name="init_pose" value="-x -11 -y 8.0 -z 0.0 -Y 1.57"/>
         </include>
     </group>
 
@@ -33,7 +33,7 @@
         <include file="$(find turtlebot3sim)/launch/includes/robot.launch.xml">
             <arg name="robot_name" value="robot3"/>
             <arg name="model" value="$(arg model)"/>
-            <arg name="init_pose" value="-x -7 -y -5 -z 0.0 -Y 0"/>
+            <arg name="init_pose" value="-x -12 -y -11 -z 0.0 -Y 0"/>
         </include>
     </group>
 </launch>

@@ -29,6 +29,8 @@ Author: Jianming TONG (jtong45@gatech.edu)
 #include <actionlib/client/simple_action_client.h>
 #include "cartographer_ros_msgs/TrajectoryQuery.h"
 #include <mutex>
+#include "std_msgs/String.h"
+
 
 // --------------------- MMPF include things
 #include<fstream>
@@ -254,8 +256,17 @@ int main(int argc, char** argv) {
 	points.points.clear();
 	pub.publish(points);
 
+    // -------------------------------------activate experiment record node
+    ros::Publisher start_pub = nh.advertise<std_msgs::String>("/start_exp", 1);
+    std_msgs::String start_msg;
+    std::stringstream ss;
+    ss << "Start!";
+    start_msg.data = ss.str();
+    std::cout<<"Start"<<std::endl;
+
      
     while(ros::ok()){
+        start_pub.publish(start_msg);
         // ---------------------------------------- variables from ROS input;
         int HEIGHT = mapData.info.height;
         int WIDTH  = mapData.info.width;
@@ -596,9 +607,9 @@ int main(int argc, char** argv) {
                                 if( dis_ < ROBOT_INTERFERE_RADIUS){
                                     int temp_ = (ROBOT_INTERFERE_RADIUS - dis_);
                                     attract += temp_;
-                                    std::cout << "robot" << i+1 << "'s loc  :( " << index_[0] << ", " << index_[1] << ")" << std::endl;
-                                    std::cout << ns << " loc  :( " << curr_around[0] << ", " << curr_around[1] << ")" << std::endl;
-                                    std::cout << robot_frame << " add " << robots_frame[i] <<"'s potential = " << temp_ << std::endl;
+                                    // std::cout << "robot" << i+1 << "'s loc  :( " << index_[0] << ", " << index_[1] << ")" << std::endl;
+                                    // std::cout << ns << " loc  :( " << curr_around[0] << ", " << curr_around[1] << ")" << std::endl;
+                                    // std::cout << robot_frame << " add " << robots_frame[i] <<"'s potential = " << temp_ << std::endl;
                                 }
                             }
                         }

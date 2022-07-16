@@ -39,8 +39,8 @@
 #include <combine_grids/merging_pipeline.h>
 #include <ros/assert.h>
 #include <ros/console.h>
-#include <opencv2/stitching/detail/matchers.hpp>
-#include <opencv2/stitching/detail/motion_estimators.hpp>
+#include </usr/local/include/opencv2/stitching/detail/matchers.hpp>
+#include </usr/local/include/opencv2/stitching/detail/motion_estimators.hpp>
 #include "estimation_internal.h"
 
 namespace combine_grids

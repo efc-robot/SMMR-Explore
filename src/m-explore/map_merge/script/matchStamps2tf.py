@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python3.8
 #coding=utf-8
 import rospy
 import threading
@@ -59,7 +59,7 @@ class MultiRobotTF_Publisher:
         FrameIDList = data.header.frame_id.split('/')
         current_robot_id = FrameIDList[1] if FrameIDList[0]=='' else FrameIDList[0]
         
-        if not self.submap_list.has_key(current_robot_id):
+        if not self.submap_list.__contains__(current_robot_id):
             self.submap_list[current_robot_id] = SubmapList()
             self.keyframe_list[current_robot_id] = []
             self.keyFrame_locks[current_robot_id] = threading.Lock()
@@ -76,8 +76,8 @@ class MultiRobotTF_Publisher:
 
     def matchcallback(self, data):
         print("New match")
-        if self.submap_list.has_key(data.robotid1) and self.submap_list.has_key(data.robotid2):
-        # if self.submap_list.has_key(data.robotid1):
+        if self.submap_list.__contains__(data.robotid1) and self.submap_list.__contains__(data.robotid2):
+        # if self.submap_list.__contains__(data.robotid1):
             rospy.wait_for_service('/{}/get_occupancy_grid'.format(data.robotid1))
             submap_client1 = rospy.ServiceProxy('/{}/get_occupancy_grid'.format(data.robotid1), OccupancyGridQuery)
             submap_info1 = SubmapList()
@@ -90,7 +90,7 @@ class MultiRobotTF_Publisher:
             pub = rospy.Publisher("/{}/occupancy_grid_sub".format(data.robotid1), OccupancyGrid, queue_size=1)
             pub.publish(submap_result1.map)
             
-        # if self.submap_list.has_key(data.robotid2):
+        # if self.submap_list.__contains__(data.robotid2):
             rospy.wait_for_service('/{}/get_occupancy_grid'.format(data.robotid2))
             submap_client2 = rospy.ServiceProxy('/{}/get_occupancy_grid'.format(data.robotid2), OccupancyGridQuery)
             submap_info2 = SubmapList()

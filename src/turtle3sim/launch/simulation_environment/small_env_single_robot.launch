@@ -20,6 +20,7 @@
           <arg name="model" value="$(arg model)"/>
           <arg name="init_pose" value="-x 7 -y 5.0 -z 0.0 -Y 1.57"/>
       </include>
+      <!-- <node pkg="rviz" type="rviz" name="rviz_robot1" args="-d $(find rrt)/rviz/robot1_rrt_node.rviz"/> -->
   </group>
 
 </launch>

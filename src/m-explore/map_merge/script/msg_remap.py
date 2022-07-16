@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python3.8
 #coding=utf-8
 import rospy
 #导入自定义的数据类型

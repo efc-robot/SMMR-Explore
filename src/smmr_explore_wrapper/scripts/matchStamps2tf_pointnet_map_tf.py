@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python3.8
 #coding=utf-8
 import rospy
 import threading
@@ -142,7 +142,7 @@ class MultiRobotTF_Publisher:
         FrameIDList = data.header.frame_id.split('/')
         current_robot_id = FrameIDList[1] if FrameIDList[0]=='' else FrameIDList[0]
         
-        if not self.submap_list.has_key(current_robot_id): # 如果没有current_robot，则新建一个key           
+        if not self.submap_list.__contains__(current_robot_id): # 如果没有current_robot，则新建一个key           
             self.submap_list[current_robot_id] = SubmapList()
             self.feature_record[current_robot_id] = np.zeros((0,self.nn_output_size),dtype=float)
             self.submap_locks[current_robot_id] = threading.Lock()
@@ -328,7 +328,7 @@ class MultiRobotTF_Publisher:
                     # self.br.sendTransformMessage(pub_tf)
                     # print(pub_tf)
                     
-            f = open('{}_matched_list.txt'.format(self.robot_id),'w')
+            f = open('{}_matched_list.txt'.format(self.robot_id),'wb')
             print(self.matched_list)
             pickle.dump(self.matched_list,f)
             f.close()

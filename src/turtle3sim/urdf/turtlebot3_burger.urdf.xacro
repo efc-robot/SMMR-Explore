@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <robot name="turtlebot3_burger" xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:include filename="$(find turtlebot3_description)/urdf/common_properties.xacro"/>
-  <xacro:include filename="$(find turtlebot3_description)/urdf/turtlebot3_burger.gazebo.xacro"/>
+  <xacro:include filename="$(find ros_topoexplore)/data/urdf/turtlebot3_burger.gazebo.xacro"/>
 
   <link name="base_footprint"/>
 
@@ -161,5 +161,42 @@
                izz="0.001" />
     </inertial>
   </link>
+
+  <joint name="camera1_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="base_camera1"/>
+    <origin xyz="0.2 0 0.172" rpy="0 0 0"/>
+  </joint>
+
+  <link name="base_camera1">
+  </link>
+
+  <joint name="camera2_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="base_camera2"/>
+    <origin xyz="0.0 0.1 0.172" rpy="0 0 1.57"/>
+  </joint>
+
+  <link name="base_camera2">
+  </link>
+
+  <joint name="camera3_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="base_camera3"/>
+    <origin xyz="-0.2 0 0.172" rpy="0 0 3.14"/>
+  </joint>
+
+  <link name="base_camera3">
+  </link>
+
+  <joint name="camera4_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="base_camera4"/>
+    <origin xyz="0.0 -0.1 0.172" rpy="0 0 -1.57"/>
+  </joint>
+
+  <link name="base_camera4">
+  </link>
+
 
 </robot>

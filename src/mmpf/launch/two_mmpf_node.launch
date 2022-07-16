@@ -42,6 +42,10 @@
     <param name="output_map_file" value="$(find mmpf)/data/robot2_mmpf_explored_map.txt"/>
   </node>
 
+  <node name="experiment" pkg="ros_topoexplore" type="experiment.py" output="screen">
+    <param name="robot_num" value="2"/>
+  </node>
+
   <node pkg="rviz" type="rviz" name="$(arg namespace1)_rviz" args="-d $(find mmpf)/rviz/single_sim_mmpf_node.rviz" />
   <node pkg="rviz" type="rviz" name="$(arg namespace2)_rviz" args="-d $(find mmpf)/rviz/single_sim_mmpf_node_robot2.rviz" />
 
